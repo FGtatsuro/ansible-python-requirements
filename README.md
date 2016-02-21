@@ -3,22 +3,22 @@
 ansible-python-requirements
 ====================================
 
-Ansible role for python-requirements
+Ansible role to satisfy the requirements for python related actions on Ansible role.
 
 Requirements
 ------------
 
-The dependencies on other softwares/librarys for this role.
+None.
 
 Role Variables
 --------------
 
-The variables we can use in this role.
+None.
 
 Role Dependencies
 -----------------
 
-The dependencies on other roles for this role.
+None.
 
 Example Playbook
 ----------------
