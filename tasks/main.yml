@@ -1,6 +1,5 @@
 ---
 # tasks file for python-requirements
-# TODO: This should be moved to another role.
 - name: Install requirement for Ansible apt module
   # Playbook using this role should remove cache like:
   # rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
