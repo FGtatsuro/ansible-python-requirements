@@ -14,7 +14,6 @@ matrix:
       python: 2.7
       services:
         - docker
-      # Install ansible
       addons:
         apt:
           packages:
@@ -31,7 +30,7 @@ matrix:
         - CONNECTION=docker
 
 install:
-  - pip install ansible
+  - sudo pip install ansible
 
 script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
