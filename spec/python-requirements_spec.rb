@@ -11,3 +11,7 @@ end
 describe package('build-essential'), :if => os[:family] == 'debian' do
   it { should be_installed }
 end
+
+describe command('which python') do
+  its(:exit_status) { should eq 0 }
+end
