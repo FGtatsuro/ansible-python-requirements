@@ -1,3 +1,7 @@
 ---
 # tasks file for python-requirements(On OSX)
 # No task is needed.
+- name: Install latest OpenSSL
+  homebrew: name=openssl state=latest update_homebrew=yes
+- name: Use OpenSSL of Homebrew instead of pre-installed one
+  homebrew: name=openssl state=linked install_options="--force"
