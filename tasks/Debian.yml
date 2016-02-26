@@ -17,3 +17,5 @@
     - build-essential
     - python-dev
   become: yes
+- name: Install latest OpenSSL
+  apt: name=openssl state=latest update_cache=yes
