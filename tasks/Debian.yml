@@ -12,8 +12,10 @@
   register: result
   changed_when: "'0 upgraded, 0 newly installed' not in result.stdout"
 - name: Install requirements for python-requirements from apt
-  apt: name={{ item }} update_cache=yes
+  apt: name={{ item }} update_cache=yes cache_valid_time=3600
   with_items:
     - build-essential
     - python-dev
   become: yes
+- name: Install latest OpenSSL
+  apt: name=openssl state=latest update_cache=yes cache_valid_time=3600
