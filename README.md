@@ -8,17 +8,21 @@ Ansible role to satisfy the requirements for python related actions on Ansible r
 Requirements
 ------------
 
-None.
+The dependencies on other softwares/librarys for this role.
+
+- Debian
+- OSX
+  - Homebrew (>= 0.9.5)
 
 Role Variables
 --------------
 
-None.
+The variables we can use in this role.
 
 Role Dependencies
 -----------------
 
-None.
+The dependencies on other roles for this role.
 
 Example Playbook
 ----------------
@@ -36,9 +40,23 @@ We can use same steps of them for local Docker host.
 
 Local requirements are as follows.
 
-- Ansible (> 2.0.0)
-- Docker (> 1.10.1)
+- Ansible (>= 2.0.0)
+- Docker (>= 1.10.1)
 
+Notes
+-----
+
+On OSX, please check following 2 points.
+
+- At the result of this role, latest OpenSSL in Homebrew reposiotry is used instead of pre-isntalled one.
+- Status of task related to above is always 'changed'.
+
+```
+...
+TASK [python-requirements : Use OpenSSL of Homebrew instead of pre-installed one] ***
+changed: [localhost] => {"changed": true, "msg": "Package linked: openssl"}
+...
+```
 
 License
 -------
