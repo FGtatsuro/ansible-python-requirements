@@ -19,3 +19,4 @@
   become: yes
 - name: Install latest OpenSSL
   apt: name=openssl state=latest update_cache=yes cache_valid_time=3600 install_recommends=no
+  become: yes
