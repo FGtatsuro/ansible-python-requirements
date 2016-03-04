@@ -1,15 +1,20 @@
 ---
 # tasks file for python-requirements(On Debian family)
+# Playbook using this role should remove cache like:
+# rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
+#
+# The tasks of this role may be failed if Python executable isn't on
+# /usr/bin/python. (Even if use ansible_python_interpreter)
+# At least, I found that it is failed on container python:2.
+- name: Check whether python-apt is installed.
+  command: "dpkg-query -f '${Status}' -W python-apt"
+  register: check_pythonapt
+  changed_when: no
 - name: Install requirement for Ansible apt module
-  # Playbook using this role should remove cache like:
-  # rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
-  #
-  # The tasks of this role may be failed if Python executable isn't on
-  # /usr/bin/python. (Even if use ansible_python_interpreter)
-  # At least, I found that it is failed on container python:2.
   shell: apt-get update -qq && apt-get install -y python-apt --no-install-recommends -q
   become: yes
   register: result
+  when: "'ok installed' not in check_pythonapt.stdout"
   changed_when: "'0 upgraded, 0 newly installed' not in result.stdout"
 - name: Install requirements for python-requirements from apt
   apt: name={{ item }} update_cache=yes cache_valid_time=3600 install_recommends=no
