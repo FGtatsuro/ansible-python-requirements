@@ -28,6 +28,9 @@
     - unzip
     - curl
   become: yes
-- name: Install latest OpenSSL
-  apt: name=openssl state=latest update_cache=yes cache_valid_time=3600 install_recommends=no
+- name: Install latest software related to SSL
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600 install_recommends=no
+  with_items:
+    - openssl
+    - ca-certificates
   become: yes
