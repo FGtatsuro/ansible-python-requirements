@@ -4,7 +4,6 @@
 - name: Install latest OpenSSL
   homebrew: name=openssl state=latest update_homebrew=yes
   register: result
-- debug: msg="{{ result }}"
 # Note: http://www.task-notes.com/entry/20141130/1417275206
 # force option is needed.
 - name: Use OpenSSL of Homebrew instead of pre-installed one
