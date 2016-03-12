@@ -35,7 +35,7 @@ Test on local Docker host
 -------------------------
 
 This project run tests on Travis CI, but we can also run then on local Docker host.
-Please check `install`, `before_script`, and `script` sections of `.travis.yml`. 
+Please check `install`, `before_script`, and `script` sections of `.travis.yml`.
 We can use same steps of them for local Docker host.
 
 Local requirements are as follows.
@@ -46,17 +46,9 @@ Local requirements are as follows.
 Notes
 -----
 
-On OSX, please check following 2 points.
+On OSX, please check the point.
 
 - At the result of this role, latest OpenSSL in Homebrew reposiotry is used instead of pre-isntalled one.
-- Status of task related to above is always 'changed'.
-
-```
-...
-TASK [python-requirements : Use OpenSSL of Homebrew instead of pre-installed one] ***
-changed: [localhost] => {"changed": true, "msg": "Package linked: openssl"}
-...
-```
 
 License
 -------
