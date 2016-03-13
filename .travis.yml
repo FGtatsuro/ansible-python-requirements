@@ -19,7 +19,7 @@ matrix:
           packages:
           - python-pip
       before_script:
-        - docker run -it -d --name container python:2-slim /bin/bash
+        - docker run -it -d --name container ${BASE_IMAGE} /bin/bash
         # Workaround: Docker connection plugin of Ansible requires that
         # Python is installed at specified path(/usr/bin/python) in the target container
         - docker exec container ln -s /usr/local/bin/python /usr/bin/python
@@ -28,6 +28,30 @@ matrix:
       env:
         - TARGET=container
         - CONNECTION=docker
+        - BASE_IMAGE=python:2-slim
+    - os: linux
+      dist: trusty
+      sudo: required
+      language: python
+      python: 2.7
+      services:
+        - docker
+      addons:
+        apt:
+          packages:
+          - python-pip
+      before_script:
+        # The image of Alpine Linux doesn't have bash.
+        - docker run -it -d --name container ${BASE_IMAGE} /bin/sh
+        # Workaround: Docker connection plugin of Ansible requires that
+        # Python is installed at specified path(/usr/bin/python) in the target container
+        - docker exec container ln -s /usr/local/bin/python /usr/bin/python
+      after_script:
+        - docker rm -f container
+      env:
+        - TARGET=container
+        - CONNECTION=docker
+        - BASE_IMAGE=python:2-alpine
 
 install:
   - sudo pip install ansible
