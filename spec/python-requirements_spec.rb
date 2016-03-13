@@ -4,7 +4,7 @@ describe package('python-apt'), :if => os[:family] == 'debian' do
   it { should be_installed }
 end
 
-describe package('python-dev'), :if => os[:family] == 'debian' do
+describe package('python-dev'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should be_installed }
 end
 
@@ -12,7 +12,15 @@ describe package('build-essential'), :if => os[:family] == 'debian' do
   it { should be_installed }
 end
 
-describe package('unzip'), :if => os[:family] == 'debian' do
+describe package('build-base'), :if => os[:family] == 'alpine' do
+  it { should be_installed }
+end
+
+describe package('unzip'), :if => ['debian', 'alpine'].include?(os[:family]) do
+  it { should be_installed }
+end
+
+describe package('curl'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should be_installed }
 end
 
