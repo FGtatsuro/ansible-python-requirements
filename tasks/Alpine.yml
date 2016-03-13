@@ -1,0 +1,22 @@
+---
+# tasks file for python-requirements(On Alpine Linux)
+# Playbook using this role should remove cache like:
+# rm -rf /var/cache/apk/* /var/lib/apk/* /etc/apk/cache/* # In almost cases, It's OK to remove only /var/cache/apk/*
+# Ref. http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management#Update_the_Package_list
+# Ref. http://gliderlabs.viewdocs.io/docker-alpine/usage/
+#
+# Alpine Linux has the feature with on-the-fly cache, but it seems that Ansible hasn't supported yet.
+# Thus, it's better to remove cache as above.
+- name: Install requirements for python-requirements from apk
+  apk: name={{ item }} update_cache=yes
+  with_items:
+    - python-dev
+    - build-base
+  become: yes
+# curl package also installs openssl/ca-certificates packages.
+- name: Install basic software
+  apk: name={{ item }} update_cache=yes
+  with_items:
+    - unzip
+    - curl
+  become: yes
