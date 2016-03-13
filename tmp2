@@ -1,1 +1,0 @@
-{"changed": true, "invocation": {"module_args": {"install_options": [], "name": ["openssl"], "path": "/usr/local/bin", "state": "latest", "update_homebrew": true, "upgrade_all": false}, "module_name": "homebrew"}, "msg": "Package upgraded: openssl"}
