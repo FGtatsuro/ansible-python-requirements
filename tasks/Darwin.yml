@@ -10,4 +10,4 @@
   homebrew: name=openssl state=linked install_options="--force"
   when: "'Package upgraded' in result.msg"
 - name: Install Python
-  homebrew: name=pip update_homebrew=yes
+  homebrew: name=python update_homebrew=yes
