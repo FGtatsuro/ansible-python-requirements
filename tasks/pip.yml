@@ -1,0 +1,10 @@
+---
+- name: Check whether pip is installed
+  command: "which pip"
+  register: which_pip
+  changed_when: no
+  ignore_errors: yes
+- name: Install pip
+  shell: curl -fsSL https://bootstrap.pypa.io/get-pip.py | python
+  become: yes
+  when: which_pip.rc != 0

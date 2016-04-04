@@ -20,3 +20,5 @@
     - unzip
     - curl
   become: yes
+- name: Include tasks related to pip
+  include: "pip.yml"
