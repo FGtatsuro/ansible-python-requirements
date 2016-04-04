@@ -39,3 +39,11 @@ end
 describe command('which curl') do
   its(:exit_status) { should eq 0 }
 end
+
+describe command('which python') do
+  its(:exit_status) { should eq 0 }
+end
+
+describe command('which pip') do
+  its(:exit_status) { should eq 0 }
+end
