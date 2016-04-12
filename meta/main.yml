@@ -11,9 +11,6 @@ galaxy_info:
     - name: Darwin
       versions:
         - all
-    - name: Alpine
-      versions:
-        - 3.3
 
   galaxy_tags:
     - development
