@@ -16,6 +16,8 @@
   register: result
   when: "'ok installed' not in check_pythonapt.stdout"
   changed_when: "'0 newly installed' not in result.stdout"
+  args:
+    warn: False
 - name: Install requirements for python-requirements from apt
   apt: name={{ item }} update_cache=yes cache_valid_time=3600 install_recommends=no
   with_items:
