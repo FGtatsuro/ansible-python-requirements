@@ -8,3 +8,5 @@
   shell: curl -fsSL https://bootstrap.pypa.io/get-pip.py | python
   become: yes
   when: which_pip.rc != 0
+  args:
+    warn: False
