@@ -11,6 +11,10 @@ matrix:
       env:
         - TARGET=localhost
         - CONNECTION=local
+        - PYTHONPATH="/Library/Python/2.7/site-packages:$PYTHONPATH"
+      install:
+        - sudo pip install -U setuptools
+        - sudo pip install ansible
     - os: linux
       dist: trusty
       sudo: required
@@ -58,7 +62,7 @@ matrix:
         - BASE_IMAGE=python:2-alpine
 
 install:
-  - sudo pip install ansible
+  - pip install ansible
 
 script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
