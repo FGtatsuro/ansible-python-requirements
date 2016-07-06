@@ -13,12 +13,16 @@
     - python-dev
     - build-base
   become: yes
-# curl package also installs openssl/ca-certificates packages.
 - name: Install basic software
   apk: name={{ item }} update_cache=yes
   with_items:
     - unzip
     - curl
   become: yes
+- name: Install latest software related to SSL
+  apk: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - openssl
+    - ca-certificates
 - name: Include tasks related to pip
   include: "pip.yml"
