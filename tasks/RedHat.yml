@@ -1,0 +1,25 @@
+---
+# tasks file for python-requirements(On RedHat family)
+# ATTENTION: RedHat families are NOT supported officially. There is no test about these tasks.
+- name: Install requirements for python-requirements
+  yum: name={{ item }} update_cache=yes
+  with_items:
+    - "@Development tools"
+    - "python-devel"
+  become: yes
+- name: Install basic software
+  yum: name={{ item }} update_cache=yes
+  with_items:
+    - which
+    - unzip
+    - curl
+  become: yes
+- name: Install latest software related to SSL
+  yum: name={{ item }} update_cache=yes
+  with_items:
+    - openssl
+    - openssl-devel
+    - ca-certificates
+  become: yes
+- name: Include tasks related to pip
+  include: "pip.yml"
