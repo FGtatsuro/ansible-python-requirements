@@ -20,6 +20,12 @@ Role Variables
 
 The variables we can use in this role.
 
+|name|description|type|default|
+|---|---|---|---|
+|python_requirements_update_existing_pip|If yes(true), Existing pip is updated to latest version. It means that `sudo pip install -U pip` is executed. <br>Additionally, symlink `/usr/bin/python` is created if this path doesn't exist to prevent Ansible pip module without `executable` parameter to be failed.|bool|no|
+
+- The actions related to `python_requirements_update_existing_pip` ignore errors for several reasons. Thus, you should check the results if you set this value 'yes'.
+
 Role Dependencies
 -----------------
 
