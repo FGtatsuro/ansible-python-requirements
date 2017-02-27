@@ -1,2 +1,3 @@
 ---
 # defaults file for python-requirements
+python_requirements_update_existing_pip: no

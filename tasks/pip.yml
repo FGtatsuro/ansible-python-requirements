@@ -10,3 +10,19 @@
   when: which_pip.rc != 0
   args:
     warn: False
+- block:
+  - name: Use existing pip to latest pip
+    pip:
+      name: pip
+      state: latest
+    ignore_errors: yes
+    register: result_pip_update
+    changed_when: "'Requirement already up-to-date' not in result_pip_update.stdout"
+  - name: Ensure /usr/bin/pip exists. Ansible pip module uses this path as default executable.
+    file:
+      src: /usr/local/bin/pip
+      dest: /usr/bin/pip
+      state: link
+    ignore_errors: yes
+  become: yes
+  when: python_requirements_update_existing_pip | bool
