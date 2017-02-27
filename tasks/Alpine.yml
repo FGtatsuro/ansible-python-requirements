@@ -19,11 +19,16 @@
     - unzip
     - curl
   become: yes
-- name: Install latest software related to SSL
-  apk: name={{ item }} state=latest update_cache=yes
-  with_items:
-    - openssl
-    - ca-certificates
+# Workaround to avoid the bug of Ansible apk module.
+- block:
+  - name: Install latest software related to SSL(openssl)
+    apk: name={{ item }} state=latest update_cache=yes
+    with_items:
+      - openssl
+  - name: Install latest software related to SSL(ca-certificates)
+    apk: name={{ item }} state=latest update_cache=yes
+    with_items:
+      - ca-certificates
   become: yes
 - name: Include tasks related to pip
   include: "pip.yml"

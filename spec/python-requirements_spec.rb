@@ -28,6 +28,10 @@ describe package('openssl') do
   it { should be_installed }
 end
 
+describe package('ca-certificates'), :if => ['debian', 'alpine'].include?(os[:family]) do
+  it { should be_installed }
+end
+
 describe command('which python') do
   its(:exit_status) { should eq 0 }
 end
