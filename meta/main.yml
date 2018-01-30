@@ -8,7 +8,10 @@ galaxy_info:
     - name: Debian
       versions:
         - jessie
-    - name: Darwin
+    - name: Alpine
+      versions:
+        - all
+    - name: MacOSX
       versions:
         - all
 
