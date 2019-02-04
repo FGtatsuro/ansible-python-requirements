@@ -10,6 +10,7 @@
   command: "dpkg-query -f '${Status}' -W python-apt"
   register: check_pythonapt
   changed_when: no
+  ignore_errors: yes
 - name: Install requirement for Ansible apt module
   shell: apt-get update -qq && apt-get install -y python-apt --no-install-recommends -q
   become: yes
