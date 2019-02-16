@@ -20,22 +20,38 @@
   args:
     warn: False
 - name: Install requirements for python-requirements from apt
-  apt: name={{ item }} update_cache=yes cache_valid_time=3600 install_recommends=no
-  with_items:
-    - build-essential
-    - python-dev
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    install_recommends: no
+  vars:
+    packages:
+      - build-essential
+      - python-dev
   become: yes
 - name: Install basic software
-  apt: name={{ item }} update_cache=yes cache_valid_time=3600 install_recommends=no
-  with_items:
-    - unzip
-    - curl
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    install_recommends: no
+  vars:
+    packages:
+      - unzip
+      - curl
   become: yes
 - name: Install latest software related to SSL
-  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600 install_recommends=no
-  with_items:
-    - openssl
-    - ca-certificates
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+    install_recommends: no
+  vars:
+    packages:
+      - openssl
+      - ca-certificates
   become: yes
 - name: Include tasks related to pip
   include: "pip.yml"
