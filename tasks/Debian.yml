@@ -29,6 +29,7 @@
     packages:
       - build-essential
       - python-dev
+      - python-pip
   become: yes
 - name: Install basic software
   apt:
@@ -53,5 +54,3 @@
       - openssl
       - ca-certificates
   become: yes
-- name: Include tasks related to pip
-  include: "pip.yml"
