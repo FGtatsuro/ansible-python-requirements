@@ -1,11 +1,17 @@
 require "spec_helper_#{ENV['SPEC_TARGET_BACKEND']}"
 
-describe package('python-apt'), :if => os[:family] == 'debian' do
+describe package('python-dev'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should be_installed }
 end
 
-describe package('python-dev'), :if => ['debian', 'alpine'].include?(os[:family]) do
-  it { should be_installed }
+[
+  'python-apt',
+  'python-pip',
+  'python-setuptools'
+].each do |p|
+  describe package(p), :if => os[:family] == 'debian' do
+    it { should be_installed }
+  end
 end
 
 describe package('build-essential'), :if => os[:family] == 'debian' do
