@@ -30,6 +30,7 @@
       - build-essential
       - python-dev
       - python-pip
+      - python-setuptools
   become: yes
 - name: Install basic software
   apt:
