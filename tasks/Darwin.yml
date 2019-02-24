@@ -1,13 +1,4 @@
 ---
 # tasks file for python-requirements(On OSX)
-# No task is needed.
-- name: Install latest OpenSSL
-  homebrew: name=openssl state=latest update_homebrew=yes
-  register: result
-# Note: http://www.task-notes.com/entry/20141130/1417275206
-# force option is needed.
-- name: Use OpenSSL of Homebrew instead of pre-installed one
-  homebrew: name=openssl state=linked install_options="--force"
-  when: "'Package upgraded' in result.msg"
 - name: Install Python
   homebrew: name=python update_homebrew=yes
