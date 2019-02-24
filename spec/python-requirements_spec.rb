@@ -30,7 +30,7 @@ describe package('curl'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should be_installed }
 end
 
-describe package('openssl') do
+describe package('openssl'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should be_installed }
 end
 
